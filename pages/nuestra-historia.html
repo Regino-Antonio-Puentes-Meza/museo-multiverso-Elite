@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nuestra Historia - Museo Élite de Dios</title>
+  <link rel="stylesheet" href="../assets/css/nuestra-historia.css" />
+</head>
+<body>
+  <header class="page-header">
+    <a href="./museum.html" class="back-link">⬅ Volver al Museo Principal</a>
+    <h1>Museo Élite de Dios</h1>
+    <h2>Exposición de Nuestra Historia</h2>
+  </header>
+
+  <nav class="section-nav">
+    <ul>
+      <li><a href="#quienes">¿Quiénes Somos?</a></li>
+      <li><a href="#valores">Valores</a></li>
+      <li><a href="#vision-mision">Visión y Misión</a></li>
+      <li><a href="#historia-pdf">Nuestra Historia</a></li>
+
+    </ul>
+  </nav>
+
+  <main class="page-content">
+    <section id="quienes">
+      <h2>¿Quiénes Somos?</h2>
+      <p>El Club de Guías Mayores Élite de Dios, de la Universidad Adventista de Colombia (UNAC) nació en el año 2013 con el firme propósito de formar líderes apasionados por el servicio a Dios y a la humanidad. Desde nuestros inicios, hemos mantenido el ideal de colocar a Dios en primer lugar en cada desafío, aventura y misión que emprendemos. Más que un club, somos una familia comprometida con el crecimiento espiritual, el desarrollo del carácter y la preparación para el servicio, siguiendo el ejemplo de Cristo. A través de experiencias al aire libre, capacitación en liderazgo y proyectos comunitarios, buscamos impactar vidas y reflejar el amor de Dios en todo lo que hacemos.</p>
+    </section>
+
+    <section id="valores">
+      <h2>Valores que nos Guían</h2>
+      <ul>
+        <li><strong>Compromiso:</strong> Fieles al llamado de Dios.</li>
+        <li><strong>Liderazgo:</strong> Inspirar con el ejemplo.</li>
+        <li><strong>Servicio:</strong> Amar sirviendo a otros.</li>
+        <li><strong>Excelencia:</strong> Dar lo mejor en cada paso.</li>
+      </ul>
+    </section>
+
+    <section class="vision-mision-container" id="vision-mision">
+      <img src="../assets/img/logo_campamento.png" alt="Logo Museo Élite" class="logo-decorativo" />
+
+      <div class="vision-mision">
+        <div class="card">
+          <h3>Visión</h3>
+          <p>Para el año 2026, cada miembro involucrado, preparado para la segunda venida del Señor Jesús...</p>
+        </div>
+        <div class="card">
+          <h3>Misión</h3>
+          <p>Avivar el carácter de Cristo en nuestros Guías Mayores, teniendo como principio la unión y el servicio...</p>
+        </div>
+        <div class="card">
+          <h3>Propósitos</h3>
+          <ul>
+            <li>Educar integralmente a los menores para fomentar su relación con Dios...</li>
+            <li>Alcanzar la investidura final en la eternidad junto a nuestro Señor Jesús.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia-pdf" class="historia-pdf-section">
+      <h2>Nuestra Historia</h2>
+      <iframe 
+        src="../assets/docs/nuestra-historia.pdf"
+        width="100%" 
+        height="700px"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+    </section>
+    
+  </main>
+
+  <!-- Popup para tarjetas -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content" id="popup-content">
+      <button class="popup-close" onclick="closePopup()">✖</button>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById("popup");
+    const popupContent = document.getElementById("popup-content");
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        const clone = card.cloneNode(true);
+        clone.classList.remove("card");
+        popupContent.appendChild(clone);
+        popup.classList.add("visible");
+      });
+    });
+
+    function closePopup() {
+      popup.classList.remove("visible");
+      popupContent.innerHTML = '<button class="popup-close" onclick="closePopup()">✖</button>';
+    }
+  </script>
+</body>
+</html>

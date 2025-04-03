@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Galería Museo - Museo Élite de Dios</title>
+  <link rel="stylesheet" href="../assets/css/fotos.css" />
+</head>
+<body>
+    <header class="gallery-header">
+    <a href="museum.html" class="back-button">← Regresar al Museo Principal</a>
+    <h1>Museo Élite de Dios</h1>
+    <h2>Exposición Fotográfica</h2>
+  </header>
+
+  <!-- Carrusel superior -->
+  <div class="carousel-container">
+    <img id="carousel-img" src="" alt="Carrusel" />
+  </div>
+
+  <!-- Galería tipo museo -->
+  <div class="gallery-museum">
+    <div class="gallery-grid" id="gallery">
+      <!-- Las fotos se insertan automáticamente -->
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button id="prevBtn" class="nav-btn" onclick="showPrev()">❮</button>
+    <img id="lightbox-img" src="" alt="Imagen Ampliada">
+    <button id="nextBtn" class="nav-btn" onclick="showNext()">❯</button>
+    <button id="closeBtn" onclick="closeLightbox()">✕</button>
+  </div>
+
+  <script>
+    let images = [];
+    let currentIndex = 0;
+    let carouselIndex = 0;
+
+    function openLightbox(img) {
+      document.getElementById("lightbox-img").src = img.src;
+      document.getElementById("lightbox").classList.add("visible");
+      currentIndex = images.indexOf(img.src);
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("visible");
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("lightbox-img").src = images[currentIndex];
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById("lightbox-img").src = images[currentIndex];
+    }
+
+    fetch('../fotos.json')
+      .then(res => res.json())
+      .then(data => {
+        images = data;
+        const gallery = document.getElementById('gallery');
+        const carouselImg = document.getElementById('carousel-img');
+
+        data.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = "Foto";
+          img.classList.add('museum-frame');
+          img.onclick = () => openLightbox(img);
+          gallery.appendChild(img);
+        });
+
+        // Mostrar imagen inicial del carrusel
+        if (data.length > 0) {
+          carouselImg.src = data[0];
+          setInterval(() => {
+            carouselIndex = (carouselIndex + 1) % data.length;
+            carouselImg.src = data[carouselIndex];
+          }, 2000);
+        }
+      });
+  </script>
+</body>
+</html>

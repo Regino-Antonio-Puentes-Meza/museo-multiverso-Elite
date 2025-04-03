@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pantalla Museo - Museo Élite de Dios</title>
+  <link rel="stylesheet" href="../assets/css/museum.css" />
+</head>
+<body class="fade-out">
+  <div id="museum-screen" class="museum-screen">
+    <header class="museum-header">Museo Élite de Dios</header>
+
+    <button class="back-button" onclick="window.location.href='../index.html'">
+      <img src="../assets/img/ICONO_Home.png" alt="Volver al inicio">
+      Volver al inicio
+    </button>
+
+    <nav class="museum-nav">
+      <button class="nav-btn" onclick="window.location.href='nuestra-historia.html'">
+        <img src="../assets/img/ICONOS_PAG_Nuestra_historia.png" alt="Nuestra Historia">
+      </button>      
+      <button class="nav-btn" onclick="window.location.href='miembros.html'">
+        <img src="../assets/img/ICONOS_PAG_Miembros.png" alt="Miembros">
+      </button>
+      <button class="nav-btn" onclick="window.location.href='fotos.html'">
+        <img src="../assets/img/ICONOS_PAG_Fotos.png" alt="Fotos">
+      </button>
+      <button class="nav-btn" onclick="window.location.href='actividades.html'">
+        <img src="../assets/img/ICONOS_PAG_Actividades.png" alt="Actividades">
+      </button>
+    </nav>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.remove("fade-out");
+      document.body.classList.add("fade-in");
+    });
+  </script>  
+  <script src="../assets/js/museum-navigation.js"></script>
+</body>
+</html>

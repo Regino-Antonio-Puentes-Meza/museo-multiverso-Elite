@@ -1,0 +1,174 @@
+/* --- RESET / BASICS --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+.hidden {
+  display: none;
+}
+
+/* --- PANTALLA DE BIENVENIDA (SPLASH SCREEN) --- */
+.splash-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('../img/museo_elite_animated.jpeg') no-repeat center center;
+  background-size: cover;
+
+  animation: backgroundFloat 12s ease-in-out infinite;
+}
+
+/* Contenedor que pone un leve filtro encima y centra el botón */
+.splash-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* siempre igual al ancho de la ventana */
+  height: 100vh; /* siempre igual al alto de la ventana */
+  background: rgba(159, 49, 49, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: scale(calc(1 / var(--zoom-scale, 1)));
+  transform-origin: top left;
+  z-index: 1000;
+}
+
+
+/* BOTÓN: la puerta con sombreado y animación */
+.enter-btn {
+  position: fixed;
+  bottom: 90px; /* Distancia desde la parte inferior */
+  left: 32%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  
+  width: 180px;
+  height: 340px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  box-shadow: 0 40px 465px rgba(67, 229, 3, 0.957);
+  animation: doorFloat 3s ease-in-out infinite alternate;
+}
+
+
+/* Efecto de parpadeo o tildeo + rayos */
+.door-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  animation: pulseLight 1.5s infinite;
+  color: #fff;
+
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.7),
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 200, 0.5),
+    0 0 30px rgba(255, 255, 100, 0.4);
+}
+
+/* Animación de luz pulsante */
+@keyframes pulseLight {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(255, 255, 255, 0.7),
+      0 0 10px rgba(255, 255, 255, 0.6),
+      0 0 20px rgba(255, 255, 200, 0.5),
+      0 0 30px rgba(255, 255, 100, 0.4);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2) rotate(-5deg);
+    opacity: 0.8;
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 1),
+      0 0 20px rgba(255, 255, 200, 0.9),
+      0 0 30px rgba(255, 255, 150, 0.8),
+      0 0 50px rgba(255, 255, 100, 0.7);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(255, 255, 255, 0.7),
+      0 0 10px rgba(255, 255, 255, 0.6),
+      0 0 20px rgba(255, 255, 200, 0.5),
+      0 0 30px rgba(255, 255, 100, 0.4);
+  }
+}
+
+
+/* Marco visual tipo pared que rodea la puerta */
+.enter-btn::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 30px);
+  background: url('../img/Puerta_museo.png') no-repeat center center;
+  background-size: cover;
+  border: 6px solid #5a3e1b; /* opcional: marco de madera */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  z-index: -1; /* detrás de la puerta */
+  pointer-events: none; /* no afecta clics */
+}
+
+/* Texto dentro de la puerta (parte inferior) */
+.enter-btn .door-text {
+  position: absolute;
+  bottom: 10px; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+/* Keyframes: leve flotación */
+/* @keyframes doorFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-5px) scale(1.03);
+  }
+} */
+@keyframes doorFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes backgroundFloat {
+  0% {
+    background-position: center center;
+    transform: scale(1);
+  }
+  50% {
+    background-position: center 52%;
+    transform: scale(1.02);
+  }
+  100% {
+    background-position: center center;
+    transform: scale(1);
+  }
+}
