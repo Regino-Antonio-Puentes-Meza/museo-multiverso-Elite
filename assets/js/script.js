@@ -47,7 +47,4 @@
       document.getElementById("museum-container").innerHTML = "";
       document.getElementById("splash-screen").style.display = "flex";
     }
-  });
-  
-  
-  
+  }); 

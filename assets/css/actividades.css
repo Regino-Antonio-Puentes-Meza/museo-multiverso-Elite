@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background: url('../img/fondo_historia.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #222;
+  }
+  
+  .page-header {
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  .page-header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 0 2px 4px #000;
+  }
+  
+  .page-header h2 {
+    margin: 10px 0 0;
+    font-weight: 300;
+    color: #ccc;
+  }
+  
+  .back-link {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background: #5d4037;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .back-link:hover {
+    background: #7b5e4a;
+    transform: scale(1.05);
+  }
+  
+  .page-content {
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .intro {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .pdf-section {
+    margin-bottom: 60px;
+  }
+  
+  .pdf-section h3 {
+    font-size: 1.6em;
+    color: #5d4037;
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .pdf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .pdf-container iframe {
+    width: 100%;
+    height: 95vh;
+    border-radius: 10px;
+    border: 2px solid #5d4037;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  
