@@ -57,7 +57,7 @@
       document.getElementById("lightbox-img").src = images[currentIndex];
     }
 
-    fetch('../fotos.json')
+    fetch('../assets/data/fotos.json')
       .then(res => res.json())
       .then(data => {
         images = data;
