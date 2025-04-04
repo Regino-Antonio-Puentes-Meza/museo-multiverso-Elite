@@ -172,3 +172,46 @@ body, html {
     transform: scale(1);
   }
 }
+
+/* estilos para acceso a redes sociales */
+.social-icons {
+  position: fixed; /* ¡Importante para que estén por encima y no queden ocultos! */
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  z-index: 9999; /* Muy alto para estar al frente */
+}
+
+.social-icon {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #fff;
+  cursor: pointer; /* ✅ Aquí se activa el puntero de mano */
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.social-icon.facebook {
+  background: linear-gradient(to top, #3b5998, #4a69ad);
+  color: #fff;
+}
+
+.social-icon.instagram {
+  background: radial-gradient(circle at 30% 30%, #fdf497, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+}
