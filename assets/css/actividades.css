@@ -105,4 +105,187 @@ body {
     border: 2px solid #5d4037;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
-  
+  /*
+    ======================================================
+    ESTILOS GENERALES
+    ======================================================
+*/
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  background: url('../img/fondo_historia.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.205);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/*
+    ======================================================
+    ESTILOS HEADER
+    ======================================================
+*/
+.page-header {
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 2.6em;
+  text-shadow: 0 2px 4px #000;
+}
+
+.page-header h2 {
+  margin: 10px 0 0;
+  font-weight: 300;
+  color: #ccc;
+}
+
+.back-link {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: #5d4037;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.back-link:hover {
+  background: #7b5e4a;
+  transform: scale(1.05);
+}
+
+.page-content {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.intro {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.pdf-section {
+  margin-bottom: 60px;
+}
+
+.pdf-section h3 {
+  font-size: 1.6em;
+  color: #5d4037;
+  text-align: center;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.pdf-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-container iframe {
+  width: 100%;
+  height: 95vh;
+  border-radius: 10px;
+  border: 2px solid #5d4037;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* ======================================================
+   MEDIA QUERIES: AJUSTES SOLO AL HEADER Y BOTÓN "REGRESAR"
+   ======================================================
+*/
+
+/* 1) Para tablets grandes (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .page-header {
+    /* Aumentamos el padding superior para separar mejor el contenido */
+    padding: 90px 20px 20px;
+  }
+  .page-header h1 {
+    font-size: 2.2em;
+  }
+  .page-header h2 {
+    font-size: 1em;
+  }
+  .back-link {
+    /* Posicionamos el botón "Regresar" para que no se superponga */
+    top: 40px;
+    left: 20px;
+    font-size: 1em;
+  }
+}
+
+/* 2) Para tablets medianas (max-width: 768px) */
+@media (max-width: 768px) {
+  .page-header {
+    padding: 50px 20px 10px;
+  }
+  .page-header h1 {
+    font-size: 1.8em;
+  }
+  .page-header h2 {
+    font-size: 0.95em;
+  }
+  .back-link {
+    top: 35px;
+    left: 15px;
+    font-size: 0.95em;
+  }
+}
+
+/* 3) Para móviles pequeños (max-width: 480px) */
+@media (max-width: 480px) {
+  .page-header {
+    padding: 40px 10px 10px;
+  }
+  .page-header h1 {
+    font-size: 1.6em;
+  }
+  .page-header h2 {
+    font-size: 0.9em;
+  }
+  .back-link {
+    top: 30px;
+    left: 10px;
+    font-size: 0.85em;
+    padding: 8px 14px;
+  }
+}

@@ -13,63 +13,60 @@ body, html {
   display: none;
 }
 
-/* --- PANTALLA DE BIENVENIDA (SPLASH SCREEN) --- */
+/* 
+   PANTALLA DE BIENVENIDA (SPLASH SCREEN)
+   - Ajustamos para que la imagen se adapte al alto
+*/
 .splash-screen {
   position: relative;
   width: 100%;
-  height: 100vh;
-  background: url('../img/museo_elite_animated.jpeg') no-repeat center center;
+  min-height: 100vh; /* Mantener en móvil */
+  height: -webkit-fill-available;
+  background: url('../img/museo_elite_animated.jpeg') center center no-repeat;
   background-size: cover;
+  background-position: center;
 
+  /* Animación suave */
   animation: backgroundFloat 12s ease-in-out infinite;
 }
 
-/* Contenedor que pone un leve filtro encima y centra el botón */
+/* Contenedor con leve filtro (overlay) y centrado */
 .splash-content {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw; /* siempre igual al ancho de la ventana */
-  height: 100vh; /* siempre igual al alto de la ventana */
-  background: rgba(159, 49, 49, 0.3);
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  transform: scale(calc(1 / var(--zoom-scale, 1)));
-  transform-origin: top left;
   z-index: 1000;
+  /* background: rgba(159, 49, 49, 0.3); // opcional overlay rojizo */
 }
-
 
 /* BOTÓN: la puerta con sombreado y animación */
 .enter-btn {
   position: fixed;
-  bottom: 90px; /* Distancia desde la parte inferior */
-  left: 32%;
-  transform: translateX(-50%); /* Centra horizontalmente */
-  
-  width: 180px;
-  height: 340px;
+  width: 160px;     /* Más ancho */
+  height: 250px;    /* Más alto */
+  bottom: 6%;     /* Subimos la puerta */
+  left: 65%;        /* Más a la izquierda */
+  transform: translateX(0); /* No centrado -50% */
   border: none;
   cursor: pointer;
   outline: none;
-
   box-shadow: 0 40px 465px rgba(67, 229, 3, 0.957);
   animation: doorFloat 3s ease-in-out infinite alternate;
 }
 
-
-/* Efecto de parpadeo o tildeo + rayos */
+/* Texto en la puerta */
 .door-text {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 3rem;
+  font-size: 2.6rem;
   animation: pulseLight 1.5s infinite;
   color: #fff;
-
+  text-align: center;
   text-shadow:
     0 0 5px rgba(255, 255, 255, 0.7),
     0 0 10px rgba(255, 255, 255, 0.6),
@@ -77,39 +74,7 @@ body, html {
     0 0 30px rgba(255, 255, 100, 0.4);
 }
 
-/* Animación de luz pulsante */
-@keyframes pulseLight {
-  0% {
-    transform: translateX(-50%) scale(1);
-    opacity: 1;
-    text-shadow:
-      0 0 5px rgba(255, 255, 255, 0.7),
-      0 0 10px rgba(255, 255, 255, 0.6),
-      0 0 20px rgba(255, 255, 200, 0.5),
-      0 0 30px rgba(255, 255, 100, 0.4);
-  }
-  50% {
-    transform: translateX(-50%) scale(1.2) rotate(-5deg);
-    opacity: 0.8;
-    text-shadow:
-      0 0 10px rgba(255, 255, 255, 1),
-      0 0 20px rgba(255, 255, 200, 0.9),
-      0 0 30px rgba(255, 255, 150, 0.8),
-      0 0 50px rgba(255, 255, 100, 0.7);
-  }
-  100% {
-    transform: translateX(-50%) scale(1);
-    opacity: 1;
-    text-shadow:
-      0 0 5px rgba(255, 255, 255, 0.7),
-      0 0 10px rgba(255, 255, 255, 0.6),
-      0 0 20px rgba(255, 255, 200, 0.5),
-      0 0 30px rgba(255, 255, 100, 0.4);
-  }
-}
-
-
-/* Marco visual tipo pared que rodea la puerta */
+/* Pseudo-elemento para el marco */
 .enter-btn::before {
   content: "";
   position: absolute;
@@ -119,71 +84,90 @@ body, html {
   height: calc(100% + 30px);
   background: url('../img/Puerta_museo.png') no-repeat center center;
   background-size: cover;
-  border: 6px solid #5a3e1b; /* opcional: marco de madera */
+  border: 6px solid #5a3e1b;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  z-index: -1; /* detrás de la puerta */
-  pointer-events: none; /* no afecta clics */
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* Texto dentro de la puerta (parte inferior) */
-.enter-btn .door-text {
-  position: absolute;
-  bottom: 10px; 
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  background: rgba(0,0,0,0.5);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.85em;
-  text-align: center;
-}
-
-/* Keyframes: leve flotación */
-/* @keyframes doorFloat {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    transform: translateY(-5px) scale(1.03);
-  }
-} */
+/* ANIMACIONES */
 @keyframes doorFloat {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-8px);
-  }
+  0%   { transform: translateY(0);   }
+  100% { transform: translateY(-8px); }
 }
-
 @keyframes backgroundFloat {
+  0%, 100% { background-position: center; }
+  50%      { background-position: center 52%; }
+}
+@keyframes pulseLight {
   0% {
-    background-position: center center;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
   50% {
-    background-position: center 52%;
-    transform: scale(1.02);
+    transform: translate(-50%, -50%) scale(1.2) rotate(-5deg);
+    opacity: 0.8;
   }
   100% {
-    background-position: center center;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
-/* estilos para acceso a redes sociales */
+/* Para pantallas “laptop” (max ~1200px) */
+@media (max-width: 1200px) {
+  .enter-btn {
+    width: 200px;     /* Más ancho */
+    height: 300px;    /* Más alto */
+    bottom: 10%;     /* Subimos la puerta */
+    left: 10%;        /* Más a la izquierda */
+    transform: translateX(0); /* No centrado -50% */
+  }
+  .door-text {
+    font-size: 2.4rem;
+  }
+}
+
+/* Para pantallas “tablet” (max ~768px) */
+@media (max-width: 768px) {
+  .enter-btn {
+    width: 200px;     /* Más ancho */
+    height: 300px;    /* Más alto */
+    bottom: 10%;     /* Subimos la puerta */
+    left: 10%;        /* Más a la izquierda */
+    transform: translateX(0); /* No centrado -50% */
+  }
+  .door-text {
+    font-size: 2rem;
+  }
+}
+
+/* Para pantallas pequeñas (max ~480px, móviles) */
+@media (max-width: 480px) {
+  .enter-btn {
+    width: 380px;     /* Más ancho */
+    height:550px;    /* Más alto */
+    bottom: 10%;     /* Subimos la puerta */
+    left: 25%;        /* Más a la izquierda */
+    transform: translateX(0); /* No centrado -50% */
+  }
+  .door-text {
+    font-size: 1.8rem;
+  }
+}
+
+
+/* ÍCONOS SOCIALES (por ejemplo) */
 .social-icons {
-  position: fixed; /* ¡Importante para que estén por encima y no queden ocultos! */
-  bottom: 40px;
+  position: fixed;
+  bottom: 40px; 
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 40px;
-  z-index: 9999; /* Muy alto para estar al frente */
+  z-index: 9999;
 }
-
 .social-icon {
   width: 65px;
   height: 65px;
@@ -198,19 +182,16 @@ body, html {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 3px solid #fff;
-  cursor: pointer; /* ✅ Aquí se activa el puntero de mano */
+  cursor: pointer;
 }
-
 .social-icon:hover {
   transform: scale(1.2);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
 }
-
 .social-icon.facebook {
   background: linear-gradient(to top, #3b5998, #4a69ad);
   color: #fff;
 }
-
 .social-icon.instagram {
   background: radial-gradient(circle at 30% 30%, #fdf497, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   color: #fff;

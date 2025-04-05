@@ -1,167 +1,274 @@
+/* --- RESET / BASICS --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Georgia', serif;
-    background: url('../img/fondo_galeria.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #222;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Georgia', serif;
+  background: url('../img/fondo_galeria.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+
+.gallery-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-spacing {
+  height: 160px; /* igual o mayor que el alto del header */
+}
+
+.gallery-header h1 {
+  margin: 0;
+  font-size: 2.6em;
+  text-shadow: 0 2px 4px #000;
+}
+
+.gallery-header h2 {
+  margin: 10px 0 0;
+  font-weight: 300;
+  color: #ccc;
+}
+
+/* Botón "Regresar" */
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: #5d4037;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.back-button:hover {
+  background: #7b5e4a;
+  transform: scale(1.05);
+}
+
+/* Carousel principal */
+.carousel-container {
+  width: 100%;
+  height: 550px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 -2px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 160px;
+}
+
+#carousel-img {
+  height: 90%;
+  max-width: 90%;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 12px solid #5d4037;
+  background: #f8f5f1;
+  box-shadow: none;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#carousel-img:hover {
+  transform: scale(1.02);
+}
+
+.gallery-museum {
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 70px 50px;
+  justify-items: center;
+  padding: 0 20px;
+}
+
+.museum-frame {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  background: linear-gradient(to bottom, #f9f4ef 0%, #fff5e1 100%);
+  border: 12px solid #8b5e3c;
+  border-radius: 18px;
+  box-shadow: none;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.museum-frame:hover {
+  transform: scale(1.07);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+.lightbox.visible {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 235, 200, 0.4);
+}
+
+/* Botones nav del lightbox */
+.nav-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  z-index: 1001;
+}
+
+#prevBtn { left: 20px; }
+#nextBtn { right: 20px; }
+#closeBtn {
+  top: 20px;
+  right: 30px;
+  transform: none;
+  font-size: 1.8rem;
+  position: absolute;
+}
+
+/* ======================================
+   MEDIA QUERIES PARA RESPONSIVIDAD
+   ====================================== */
+
+   @media (max-width: 1024px) {
+    /* Aumenta el padding top para empujar el texto hacia abajo */
+    .gallery-header {
+      padding: 70px 20px 20px;
+    }
   
-  .gallery-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    color: #fff;
-    text-align: center;
-    padding: 40px 20px 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    /* Ajusta también el margen interno del título si lo deseas */
+    .gallery-header h1 {
+      margin-top: 10px; 
+    }
   
-  .header-spacing {
-    height: 160px; /* igual o mayor que el alto del header */
-  }
+    /* Sube o baja el botón "Regresar" */
+    .back-button {
+      top: 20px; 
+      left: 20px; 
+    }
   
+    /* Ajustes de la galería, si lo deseas */
+    .museum-frame {
+      height: 320px; 
+    }
   
-  .gallery-header h1 {
-    margin: 0;
-    font-size: 2.6em;
-    text-shadow: 0 2px 4px #000;
-  }
-  
-  .gallery-header h2 {
-    margin: 10px 0 0;
-    font-weight: 300;
-    color: #ccc;
-  }
-  
-  .back-button {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    background: #5d4037;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1.1em;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease, transform 0.2s;
-    text-decoration: none;
-    text-align: center;
-  }
-  
-  .back-button:hover {
-    background: #7b5e4a;
-    transform: scale(1.05);
-  }
-  
-  .carousel-container {
-    width: 100%;
-    height: 550px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 -2px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 160px;
-  }
-  
-  #carousel-img {
-    height: 90%;
-    max-width: 90%;
-    object-fit: contain;
-    border-radius: 16px;
-    border: 12px solid #5d4037;
-    background: #f8f5f1;
-    box-shadow: none;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
-  }
-  
-  #carousel-img:hover {
-    transform: scale(1.02);
-  }
-  
-  .gallery-museum {
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 70px 50px;
-    justify-items: center;
-    padding: 0 20px;
-  }
-  
-  .museum-frame {
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
-    background: linear-gradient(to bottom, #f9f4ef 0%, #fff5e1 100%);
-    border: 12px solid #8b5e3c;
-    border-radius: 18px;
-    box-shadow: none;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .museum-frame:hover {
-    transform: scale(1.07);
-  }
-  
-  .lightbox {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    flex-direction: column;
-  }
-  
-  .lightbox.visible {
-    display: flex;
-  }
-  
-  .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(255, 235, 200, 0.4);
-  }
-  
-  .nav-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 2.5rem;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 10px;
-    z-index: 1001;
-  }
-  
-  #prevBtn { left: 20px; }
-  #nextBtn { right: 20px; }
-  #closeBtn {
-    top: 20px;
-    right: 30px;
-    transform: none;
-    font-size: 1.8rem;
-    position: absolute;
+    .carousel-container {
+      height: 500px;
+      margin-top: 150px;
+    }
   }  
+
+@media (max-width: 768px) {
+  .gallery-header {
+    padding: 50px 10px 10px;
+  }
+  .back-button {
+    font-size: 1em;
+    padding: 10px 20px;
+    left: 10px;
+    top: 15px;
+  }
+  .carousel-container {
+    height: 400px;
+    margin-top: 140px;
+  }
+
+  #carousel-img {
+    height: 80%;
+  }
+
+  .museum-frame {
+    height: 280px;
+  }
+}
+
+/* 2) Ajustes para móviles pequeños (máx ~480px) */
+@media (max-width: 480px) {
+  /* Header */
+  .gallery-header {
+    padding: 20px 10px 10px;
+  }
+  .gallery-header h1 {
+    font-size: 1.6em;
+  }
+  .gallery-header h2 {
+    font-size: 0.9em;
+  }
+
+  /* Botón "Regresar" aún más chico */
+  .back-button {
+    font-size: 0.9em;
+    padding: 8px 16px;
+    left: 8px;
+    top: 8px;
+  }
+
+  /* Carousel */
+  .carousel-container {
+    height: 300px;
+    margin-top: 110px; 
+  }
+  #carousel-img {
+    height: 70%;
+  }
+
+  /* Galería */
+  .museum-frame {
+    height: 220px;
+  }
+
+  /* Lightbox en móvil: ocupar casi toda la pantalla */
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
