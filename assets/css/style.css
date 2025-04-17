@@ -155,6 +155,14 @@ body, html {
   .door-text {
     font-size: 1.8rem;
   }
+  .splash-screen {
+    /* Forzamos la altura al 100% del viewport */
+    height: 100vh;
+    min-height: 100vh;
+    /* background-size: cover se encarga de cubrir el área sin dejar espacios */
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
 

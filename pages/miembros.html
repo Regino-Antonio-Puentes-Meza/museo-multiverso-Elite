@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <title>Miembros - Museo Élite de Dios</title>
@@ -20,16 +19,17 @@
         <h1>Museo Élite de Dios</h1>
         <h2>Exposición de Miembros del Club Élite de Dios</h2>
     </header>
-    <a href="../assets/data/miembros.json"></a>
     <div class="page-content">
         <div class="intro">
             <h2>Conozcamos a los miembros que conforman la Directiva y los integrantes del Club Élite de Dios.</h2>
+            <!-- Nuevo botón para visualizar biografías -->
+            <button class="view-bios" onclick="abrirPDF('../assets/pdfs/Biografia_integrantes_Elite.pdf')">Visualizar Biografías</button>
         </div>
         <div class="buscador-container">
             <input type="text" id="buscador" placeholder="🔍 Buscar miembro por nombre..." />
             <div class="contador-container">
                 <div id="contador-miembros">Total: 0 miembros</div>
-              </div>              
+            </div>              
         </div>
         <section class="seccion-miembros">
             <h2 class="titulo-directiva">Miembros de la Directiva</h2>
@@ -40,10 +40,7 @@
             <h2 class="titulo-club">Miembros del Club</h2>
             <div id="club-container" class="miembros-container"></div>
         </section>
-
     </div>
-    </main>
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             fetch("../assets/data/miembros.json")
@@ -51,8 +48,7 @@
                 .then(data => {
                     const directiva = document.getElementById('directiva-container');
                     const club = document.getElementById('club-container');
-
-                    let rolDirectiva = "DIRECTIVA"
+                    let rolDirectiva = "DIRECTIVA";
                     data.forEach(persona => {
                         const div = document.createElement('div');
                         div.classList.add('miembro-card');
@@ -62,20 +58,25 @@
                         div.innerHTML = `
   <div class="icono-user">👤</div>
   <h3>${persona.nombre.replaceAll('_', ' ')}</h3>
-  <a class="ver-pdf" onclick="abrirPDF('../assets/pdfs/${persona.nombre}.pdf')">Ver Hoja de Vida</a>
+  <a style="" class="ver-pdf" onclick="abrirPDF('../assets/pdfs/${persona.nombre}.pdf')">Ver Hoja de Vida</a>
 `;
-
                         if (persona.rol.toLocaleUpperCase() === rolDirectiva) {
                             directiva.appendChild(div);
                         } else {
                             club.appendChild(div);
                         }
+                        let nombrePersona = persona.nombre.replaceAll('_', ' ')
+                        // console.log(nombrePersona);
+                        if (nombrePersona.includes("Mejia")) {
+                            div.classList.add('saraDirectora');
+                            console.log(nombrePersona);
+                            
+                        }
+                        
                     });
-
-                    actualizarContador(); // ✅ Llamar justo aquí al final
+                    actualizarContador(); // Actualiza el contador de miembros visibles
                 });
 
-            // Buscar y contar
             const filtroInput = document.getElementById("buscador");
             const contador = document.getElementById("contador-miembros");
 
@@ -97,7 +98,6 @@
             }
         });
 
-
         function abrirPDF(ruta) {
             const modal = document.getElementById("pdfModal");
             const viewer = document.getElementById("pdfViewer");
@@ -108,10 +108,9 @@
         function cerrarPDF() {
             const modal = document.getElementById("pdfModal");
             const viewer = document.getElementById("pdfViewer");
-            viewer.src = ""; // Limpia la ruta
+            viewer.src = "";
             modal.classList.remove("visible");
         }
     </script>
 </body>
-
 </html>
